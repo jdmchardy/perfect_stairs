@@ -119,16 +119,13 @@ def main():
 
     st.markdown("#### Optimum Values")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
     with col1:
         opt_step_height = st.number_input("Optimal step height (mm)", value = 240, min_value=0, step=1, help="Desired step height.")
-    with col2:
         opt_step_depth = st.number_input("Optimal step depth (mm)", value = 300, min_value=0, step=1, help="Desired step depth.")
-    with col3:
-        opt_angle = st.number_input("Optimal inclination angle (deg)", value = 40.0, min_value=0, step=0.1, help="Desired inclination angle.")
-        
-        
-    
+    with col2:
+        opt_overhang = st.number_input("Optimal overhang (deg)", value = 10, min_value=0, step=1, help="Ideal overhang.")
+        opt_angle = st.number_input("Optimal inclination angle (deg)", value = 40.0, min_value=0.0, step=0.1, help="Desired inclination angle.")
     
     st.markdown("#### Constraints")
     col1, col2 = st.columns(2)
