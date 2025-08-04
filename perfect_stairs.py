@@ -82,19 +82,21 @@ def run_optimisation():
 
 def get_cut_values(stair_solution):
 
-    #number_steps = stair_solution[]
-    #total_rise = stair_solution[]
-    #actual_joist_width = stair_solution[]
-    #tread_thickness = stair_solution[]
-    #inclination_angle = stair_solution[]
+    """
+    number_steps = stair_solution[]
+    total_rise = stair_solution[]
+    actual_joist_width = stair_solution[]
+    tread_thickness = stair_solution[]
+    inclination_angle = stair_solution[]
 
-    #h2 = total_rise/number_steps
-    #h1 = h2 - tread_thickness
+    h2 = total_rise/number_steps
+    h1 = h2 - tread_thickness
 
-    #a1 = actual_joist_width-h1*np.cos(np.radians(inclination_angle))
-    #a2 = actual_joist_width-(step_cut_depth*np.sin(np.radians(inclination_angle)))
+    a1 = actual_joist_width-h1*np.cos(np.radians(inclination_angle))
+    a2 = actual_joist_width-(step_cut_depth*np.sin(np.radians(inclination_angle)))
     
-    #return a1, a2, b1, b2, b3, c1, c2, d1
+    return a1, a2, b1, b2, b3, c1, c2, d1
+    """
 
 def main():
     st.set_page_config(page_title="Stair Joist Calculator", layout="centered")
