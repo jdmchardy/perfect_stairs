@@ -81,46 +81,46 @@ def main():
     st.markdown("#### Essential Parameters")
     col1, col2 = st.columns(2)
     with col1:
-        joist_width = st.number_input("Actual Joist Width (mm)", min_value=0.0, step=1.0, help="The actual width of the joist stringer.")
+        joist_width = st.number_input("Actual Joist Width (mm)",value = 400, min_value=0.0, step=1.0, help="The actual width of the joist stringer.")
     with col2:
-        total_rise = st.number_input("Total Rise (mm)", min_value=0.0, step=1.0)
+        total_rise = st.number_input("Total Rise (mm)", value = 2000, min_value=0.0, step=1.0)
 
     col1, col2 = st.columns(2)
     with col1:
-        tread_thickness = st.number_input("Tread Thickness (mm)", min_value=0.0, step=1.0, help="The thickness of the step material.")
+        tread_thickness = st.number_input("Tread Thickness (mm)", value = 30, min_value=0.0, step=1.0, help="The thickness of the step material.")
     with col2:
-        backboard_thickness = st.number_input("Backboard Thickness (mm)", min_value=0.0, step=1.0, help="The thickness of the step backing material.")
+        backboard_thickness = st.number_input("Backboard Thickness (mm)", value = 30, min_value=0.0, step=1.0, help="The thickness of the step backing material.")
     
     st.markdown("#### Constraints")
     col1, col2 = st.columns(2)
     with col1:
         max_run = st.number_input("Maximum run (mm)", min_value=0.0, step=1.0, help="Constraint on the maximum run allowed.")
     with col2:
-        min_stringer_thickness = st.number_input("Minimum stringer Thickness (mm)", min_value=0.0, step=1.0, help="The allowable remaining joist thickness.")
+        min_stringer_thickness = st.number_input("Minimum stringer Thickness (mm)", min_value=0.0, value=100.0, step=1.0, help="The allowable remaining joist thickness.")
 
     col1, col2 = st.columns(2)
     with col1:
         min_number_of_steps = st.number_input("Min number of steps", min_value=1, step=1)
     with col2:
-        max_number_of_steps = st.number_input("Max number of steps", min_value=1, step=1)
+        max_number_of_steps = st.number_input("Max number of steps", value=10, min_value=1, step=1)
 
     col1, col2 = st.columns(2)
     with col1:
-        min_step_height = st.number_input("Min step height (mm)", min_value=1, step=1)
+        min_step_height = st.number_input("Min step height (mm)", value = 180, min_value=1, step=1)
     with col2:
-        max_step_height = st.number_input("Max step height (mm)", min_value=1, step=1)
+        max_step_height = st.number_input("Max step height (mm)", value=260, min_value=1, step=1)
 
     col1, col2 = st.columns(2)
     with col1:
-        min_step_depth = st.number_input("Min step depth (mm)", min_value=1, step=1)
+        min_step_depth = st.number_input("Min step depth (mm)", value= 220, min_value=1, step=1)
     with col2:
-        max_step_depth = st.number_input("Max step depth (mm)", min_value=1, step=1)
+        max_step_depth = st.number_input("Max step depth (mm)", value=320, min_value=1, step=1)
 
     col1, col2 = st.columns(2)
     with col1:
-        min_overhang = st.number_input("Min overhang (mm)", min_value=0.0, step=1.0, help="The minimum nosing overhang over each step.")
+        min_overhang = st.number_input("Min overhang (mm)", value=0, min_value=0.0, step=1.0, help="The minimum nosing overhang over each step.")
     with col2:
-        max_overhang = st.number_input("Max overhang (mm)", min_value=0.0, step=1.0, help="The maximum nosing overhang over each step.")
+        max_overhang = st.number_input("Max overhang (mm)", value = 30, min_value=0.0, step=1.0, help="The maximum nosing overhang over each step.")
 
     if st.button("Compute stair geometry"):
         with st.spinner("Calculating stair geometry..."):
