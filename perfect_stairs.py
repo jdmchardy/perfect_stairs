@@ -72,10 +72,23 @@ def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
         angle_init = 40 #The initial value for the inclination angle in degrees
         return steps_init, overhang_init, angle_init
 
-def cost_function():
-    calc = []
-    #residuals = ideal - calc
-    #return sum(residuals**2)
+def cost_function(params, ideal_values, total_rise):
+    #ideal values is a list containing [opt_height, opt_depth, opt_overhang, opt_angle]
+
+    inclination_angle = params[0]
+    number_steps = params[1]
+    step_overhang = params[2]
+
+    h2_step_height = total_rise/number_steps
+    w_step_cut_depth = h2_step_height/np.tan(np.radians(inclination_angle))
+    t_step_tread_depth = w_step_cut_depth + step_overhang
+    angle =
+    calc = [h2_step_height, t_step_tread_depth, step_overhang, inclination_angle]
+    percentage = calc/ideal*100
+
+    residuals = percentage-100
+    
+    return sum(residuals**2)
 
 def run_optimisation():
     a = 1
