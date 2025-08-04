@@ -73,8 +73,6 @@ def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
         return steps_init, overhang_init, angle_init
 
 def cost_function():
-
-    
     calc = []
     residuals = ideal - calc
     return sum(residuals**2)
@@ -82,7 +80,7 @@ def cost_function():
 def run_optimisation():
     
 
-def get_cut_values(stair_solution , ):
+def get_cut_values(stair_solution):
 
     number_steps = stair_solution[]
     total_rise = stair_solution[]
