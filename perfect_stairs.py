@@ -84,7 +84,7 @@ def cost_function(params, ideal_values, total_rise):
     w_step_cut_depth = h2_step_height/np.tan(np.radians(inclination_angle))
     t_step_tread_depth = w_step_cut_depth + step_overhang
     calc = [h2_step_height, t_step_tread_depth, step_overhang, inclination_angle]
-    percentage = calc/ideal*100
+    percentage = calc/ideal_values*100
 
     residuals = percentage-100
     cost = sum(residuals**2)
