@@ -75,9 +75,9 @@ def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
 def cost_function(params, ideal_values, total_rise):
     #ideal values is a list containing [opt_height, opt_depth, opt_overhang, opt_angle]
 
-    inclination_angle = params[0]
-    number_steps = params[1]
-    step_overhang = params[2]
+    number_steps = params[0]
+    step_overhang = params[1]
+    inclination_angle = params[2]
 
     h2_step_height = total_rise/number_steps
     w_step_cut_depth = h2_step_height/np.tan(np.radians(inclination_angle))
@@ -177,10 +177,10 @@ def main():
             st.success("Geometry Solved!")
 
             #Get initial parameter values
-            steps_init, overhang_init, angle_init = mk_init_params(min_steps, max_steps, min_overhang, max_overhang)
+            steps_init, overhang_init, angle_init = mk_init_params(min_number_of_steps, max_number_of_steps, min_overhang, max_overhang)
 
             #Run the minimisation here
-            initial_guess = []
+            initial_guess = [steps_init, overhang_init, angle_init]
             ideal_values = [opt_step_height, opt_step_depth, opt_overhang, opt_angle]
             cost = cost_function(initial_guess, ideal_values, total_rise)
             st.write(cost)
