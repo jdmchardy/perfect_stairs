@@ -82,13 +82,12 @@ def cost_function(params, ideal_values, total_rise):
     h2_step_height = total_rise/number_steps
     w_step_cut_depth = h2_step_height/np.tan(np.radians(inclination_angle))
     t_step_tread_depth = w_step_cut_depth + step_overhang
-    angle =
     calc = [h2_step_height, t_step_tread_depth, step_overhang, inclination_angle]
     percentage = calc/ideal*100
 
     residuals = percentage-100
-    
-    return sum(residuals**2)
+    cost = sum(residuals**2)
+    return cost
 
 def run_optimisation():
     a = 1
@@ -181,6 +180,10 @@ def main():
             steps_init, overhang_init, angle_init = mk_init_params(min_steps, max_steps, min_overhang, max_overhang)
 
             #Run the minimisation here
+            initial_guess = []
+            ideal_values = [opt_step_height, opt_step_depth, opt_overhang, opt_angle]
+            cost = cost_function(initial_guess, ideal_values, total_rise)
+            st.write(cost)
             
 
             #Calculate the cut values from the refined results
