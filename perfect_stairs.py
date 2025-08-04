@@ -74,11 +74,11 @@ def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
 
 def cost_function():
     calc = []
-    residuals = ideal - calc
-    return sum(residuals**2)
+    #residuals = ideal - calc
+    #return sum(residuals**2)
 
 def run_optimisation():
-    
+    a = 1
 
 def get_cut_values(stair_solution):
 
@@ -94,7 +94,7 @@ def get_cut_values(stair_solution):
     a1 = actual_joist_width-h1*np.cos(np.radians(inclination_angle))
     a2 = actual_joist_width-(step_cut_depth*np.sin(np.radians(inclination_angle)))
     
-    return a1, a2, b1, b2, b3, c1, c2, d1
+    #return a1, a2, b1, b2, b3, c1, c2, d1
 
 def main():
     st.set_page_config(page_title="Stair Joist Calculator", layout="centered")
