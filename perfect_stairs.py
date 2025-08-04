@@ -193,8 +193,8 @@ def main():
 
             #cut_values = get_cut_values()
 
-            fig = draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_thickness, overhang)
-            st.pyplot(fig)
+            #fig = draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_thickness, overhang)
+            #st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
