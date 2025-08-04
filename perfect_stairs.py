@@ -66,25 +66,73 @@ def draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_t
 
     return fig
 
+def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
+        steps_init = int((min_steps + max_steps)/2)
+        overhang_init = int((min_overhang + max_overhang)/2)
+        angle_init = 40 #The initial value for the inclination angle in degrees
+        return steps_init, overhang_init, angle_init
+
 def main():
-    st.set_page_config(page_title="Precision Stair Joist Visualizer", layout="centered")
-    st.title("🪜 Precision Stair Joist Visualizer")
+    st.set_page_config(page_title="Stair Joist Calculator", layout="centered")
+    st.title("🪜 Stair Joist Calculator")
 
     st.markdown("### Enter Stair Parameters (mm)")
 
-    total_rise = st.number_input("Total Rise (mm)", min_value=100.0, step=10.0)
-    total_run = st.number_input("Total Run (mm)", min_value=100.0, step=10.0)
-    tread_thickness = st.number_input("Tread Thickness (mm)", min_value=0.0, step=1.0)
-    overhang = st.number_input("Tread Overhang (mm)", min_value=0.0, step=1.0)
-    number_of_steps = st.number_input("Number of Steps", min_value=1, step=1)
-    stringer_thickness = st.number_input("Stringer Thickness (mm)", min_value=0.0, step=1.0)
-    landing_height = st.number_input("Landing Height (mm)", min_value=0.0, step=10.0)
+    st.markdown("#### Essential Parameters")
+    col1, col2 = st.columns(2)
+    with col1:
+        joist_width = st.number_input("Actual Joist Width (mm)", min_value=0.0, step=1.0, help="The actual width of the joist stringer.")
+    with col2:
+        total_rise = st.number_input("Total Rise (mm)", min_value=0.0, step=1.0)
 
-    if st.button("Render Stair Diagram"):
-        st.success("Rendering diagram with construction geometry...")
+    col1, col2 = st.columns(2)
+    with col1:
+        tread_thickness = st.number_input("Tread Thickness (mm)", min_value=0.0, step=1.0, help="The thickness of the step material.")
+    with col2:
+        backboard_thickness = st.number_input("Backboard Thickness (mm)", min_value=0.0, step=1.0, help="The thickness of the step backing material.")
+    
+    st.markdown("#### Constraints")
+    col1, col2 = st.columns(2)
+    with col1:
+        max_run = st.number_input("Maximum run (mm)", min_value=0.0, step=1.0, help="Constraint on the maximum run allowed.")
+    with col2:
+        min_stringer_thickness = st.number_input("Minimum stringer Thickness (mm)", min_value=0.0, step=1.0, help="The allowable remaining joist thickness.")
 
-        fig = draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_thickness, overhang)
-        st.pyplot(fig)
+    col1, col2 = st.columns(2)
+    with col1:
+        min_number_of_steps = st.number_input("Min number of steps", min_value=1, step=1)
+    with col2:
+        max_number_of_steps = st.number_input("Max number of steps", min_value=1, step=1)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        min_step_height = st.number_input("Min step height (mm)", min_value=1, step=1)
+    with col2:
+        max_step_height = st.number_input("Max step height (mm)", min_value=1, step=1)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        min_step_depth = st.number_input("Min step depth (mm)", min_value=1, step=1)
+    with col2:
+        max_step_depth = st.number_input("Max step depth (mm)", min_value=1, step=1)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        min_overhang = st.number_input("Min overhang (mm)", min_value=0.0, step=1.0, help="The minimum nosing overhang over each step.")
+    with col2:
+        max_overhang = st.number_input("Max overhang (mm)", min_value=0.0, step=1.0, help="The maximum nosing overhang over each step.")
+
+    if st.button("Compute stair geometry"):
+        with st.spinner("Calculating stair geometry..."):
+
+            #Run main calculations here.....
+            st.success("Calculating stair geometry...")
+
+            #Get initial parameter values
+            steps_init, overhang_init, angle_init = mk_init_params(min_steps, max_steps, min_overhang, max_overhang)
+
+            fig = draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_thickness, overhang)
+            st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
