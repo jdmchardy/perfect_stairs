@@ -72,6 +72,32 @@ def mk_init_params(min_steps, max_steps, min_overhang, max_overhang):
         angle_init = 40 #The initial value for the inclination angle in degrees
         return steps_init, overhang_init, angle_init
 
+def cost_function():
+
+    
+    calc = []
+    residuals = ideal - calc
+    return sum(residuals**2)
+
+def run_optimisation():
+    
+
+def get_cut_values(stair_solution , ):
+
+    number_steps = stair_solution[]
+    total_rise = stair_solution[]
+    actual_joist_width = stair_solution[]
+    tread_thickness = stair_solution[]
+    inclination_angle = stair_solution[]
+
+    h2 = total_rise/number_steps
+    h1 = h2 - tread_thickness
+
+    a1 = actual_joist_width-h1*np.cos(np.radians(inclination_angle))
+    a2 = actual_joist_width-(step_cut_depth*np.sin(np.radians(inclination_angle)))
+    
+    return a1, a2, b1, b2, b3, c1, c2, d1
+
 def main():
     st.set_page_config(page_title="Stair Joist Calculator", layout="centered")
     st.title("🪜 Stair Joist Calculator")
@@ -90,6 +116,19 @@ def main():
         tread_thickness = st.number_input("Tread Thickness (mm)", value = 30, min_value=0, step=1, help="The thickness of the step material.")
     with col2:
         backboard_thickness = st.number_input("Backboard Thickness (mm)", value = 30, min_value=0, step=1, help="The thickness of the step backing material.")
+
+    st.markdown("#### Optimum Values")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        opt_step_height = st.number_input("Optimal step height (mm)", value = 240, min_value=0, step=1, help="Desired step height.")
+    with col2:
+        opt_step_depth = st.number_input("Optimal step depth (mm)", value = 300, min_value=0, step=1, help="Desired step depth.")
+    with col3:
+        opt_angle = st.number_input("Optimal inclination angle (deg)", value = 40.0, min_value=0, step=0.1, help="Desired inclination angle.")
+        
+        
+    
     
     st.markdown("#### Constraints")
     col1, col2 = st.columns(2)
@@ -126,10 +165,17 @@ def main():
         with st.spinner("Calculating stair geometry..."):
 
             #Run main calculations here.....
-            st.success("Calculating stair geometry...")
+            st.success("Geometry Solved!")
 
             #Get initial parameter values
             steps_init, overhang_init, angle_init = mk_init_params(min_steps, max_steps, min_overhang, max_overhang)
+
+            #Run the minimisation here
+            
+
+            #Calculate the cut values from the refined results
+
+            #cut_values = get_cut_values()
 
             fig = draw_stair_diagram_realistic(total_rise, total_run, number_of_steps, tread_thickness, overhang)
             st.pyplot(fig)
